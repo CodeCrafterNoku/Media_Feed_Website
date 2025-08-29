@@ -1,85 +1,111 @@
-Media Feed App:
 
-This project is a small mobile media feed application built with React Native, Expo, and TypeScript. The app showcases key mobile development concepts, including infinite scrolling, image optimization, local notifications, and robust error handling.
+# React Native Media Feed App
+
+This is a React Native,Type Script project built with **Expo**. It demonstrates a social media feed with posts, notifications, and reminders.
+
+---
+
+## 📦 Dependencies
+
+This project uses the following packages:
+
+* **React & React Native** (core)
+* **expo-blur** → for blur effects
+* **expo-linear-gradient** → for gradient backgrounds
+* **@expo/vector-icons** → for icons (Ionicons, etc.)
+* **expo-notifications** → for handling push/local notifications
+* **expo-status-bar** → for status bar management (comes with Expo)
+
+---
+
+## ⚙️ Installation
+
+1. **Clone the repo**
+
+```bash
+git clone <your-repo-url>
+cd MediaFeedApp
+```
+
+2. **Install Expo CLI (if not installed)**
+
+```bash
+npm install -g expo-cli
+```
+
+3. **Install dependencies**
+
+Run this in the project root:
+
+```bash
+npm install react react-native
+npm install expo-blur
+npm install expo-linear-gradient
+npm install @expo/vector-icons
+npm install expo-notifications
+expo install expo-status-bar
+npm install --save-dev typescript @types/react @types/react-native @types/react-dom
+npm install --save-dev jest @testing-library/react-native @testing-library/jest-native jest-expo @types/jest
+npm install --save-dev jest ts-jest @types/jest babel-jest @babel/preset-env @babel/preset-typescript
+npm install --save-dev babel-preset-expo
+```
+
+Or all at once:
+
+```bash
+npm install react react-native expo-blur expo-linear-gradient @expo/vector-icons expo-notifications
+expo install expo-status-bar
+```
+
+---
+
+## ▶️ Running the project
+
+1. Start the Expo development server:
+
+```bash
+npx expo start
+```
+
+2. Open the app:
+
+   * On Android → scan the QR code with **Expo Go** app
+   * On iOS → scan QR with the Camera app or open Expo Go
+   * On Web → press `w` in the terminal
+
+---
+## ▶️ Running the test
+1. npm test
+
+## 🛠️ Project Structure
+
+```
+.
+├── App.js
+├── src/
+│   ├── api/
+│   │   └── mockApi.js
+│   ├── components/
+│   │   └── PostCard.js
+│   ├── data/
+│   │   └── posts.js
+│   ├── notifications.js
+│   └── utils/
+│       ├── money.js
+│       └── time.js
+```
+
+* `mockApi.js` → fetches mock posts
+* `PostCard.js` → UI component for posts
+* `notifications.js` → notification handling (permission requests, reminders)
+* `money.js` → ZAR currency formatting
+* `time.js` → time helpers
+### Home Screen
+![Screenshot](https://res.cloudinary.com/diet4t4b9/image/upload/v1756381608/Screenshot_2025-08-28_114444_j5t7in.png)
+![Screenshot](https://res.cloudinary.com/diet4t4b9/image/upload/v1756382335/Screenshot_2025-08-28_135716_rpdnqz.png)
 
 
 
-Objective
-The objective of this app is to provide a clean, efficient, and user-friendly experience for browsing a feed of media items. It demonstrates several essential features:
-
-Paginated Loading: It uses an infinite scroll and pull-to-refresh mechanism to load data from a mock API, handling network delays and errors gracefully.
-
-Image Optimization: The app uses expo-image for optimized image loading with caching, progressive loading (from a low-quality thumbnail to a high-quality image), and prefetching of images for a smooth user experience.
-
-Local Notifications: Users can tap a "Remind me" button to schedule a local notification. Tapping this notification deep-links directly to the corresponding item within the app.
 
 
 
-Tech Stack & Rules 
-Platform: Expo Go, React Native, TypeScript.
-
-Core Libraries: expo-image, expo-notifications.
-
-State Management: React hooks only.
-
-Data: The app uses a local mock API to simulate a remote data source.
-
-Testing: A single unit test is included for a pure utility function.
-
-Timebox: The entire project was completed within a 60-minute timebox.
-
-
-
-Features
-Pagination
-The feed is built using a FlatList to efficiently render a large number of items. It implements:
-
-Infinite Scrolling: When the user scrolls near the end of the list, a new page of data is automatically loaded using the onEndReached prop.
-
-Pull-to-Refresh: A RefreshControl allows users to pull down on the list to fetch the first page of data again, ensuring they have the most up-to-date content.
-
-Resilience: The mock API simulates a 600ms network delay and a 10% error rate. The app handles these errors by displaying an informative error message with a "Retry" button.
-
-Image Optimization
-The expo-image library is used to handle all image-related tasks efficiently.
-
-Progressive Loading: Images load progressively, showing a low-quality thumbnail first (thumbnailUrl) before the full-resolution image (imageUrl) is loaded.
-
-Caching: expo-image automatically caches images to prevent re-downloads on subsequent views.
-
-Prefetching: The app prefetches images for the next page of data, ensuring they are ready to be displayed as soon as the user scrolls down, minimizing load times.
-
-Notifications
-Permission Request: The app requests notification permissions upon startup and gracefully handles cases where the user denies permission.
-
-Scheduling: A "Remind me" button appears on items due within the next 24 hours. Tapping it schedules a local notification for the specified dueAt time, or for 5 seconds from now if the due date is too close.
-
-Deep-linking: Tapping a notification navigates the user directly to the corresponding item's detail view within the app.
-
-Accessibility (A11y) & UX
-Clear States: The user interface provides clear feedback for all states, including a loading spinner, an error message with a retry option, and an "end of list" indicator.
-
-Accessibility: All interactive elements, such as buttons and images, have meaningful accessibilityRole and accessibilityLabel props to enhance usability for users with disabilities.
-
-
-
-Unit Test
-A simple unit test is included in src/utils/time.test.ts to verify the logic of the isDueWithin24h pure function. This test ensures the function correctly identifies deadlines that are due within 24 hours from the current time.
-
-
-
-Installation and Run Instructions:
-
-1.Create a new Expo project with TypeScript:
-npx create-expo-app -t blank typescript
-
-
-2.Install the necessary packages:
-npm i expo-image expo-notifications
-
-3.Add the provided project files into their respective locations in your new project directory.
-
-4.Run the app:
-npm start
-
-Open the app in Expo Go on your physical device or a simulator to see it in action.
