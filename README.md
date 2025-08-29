@@ -1,1 +1,1 @@
-# MidiaFeedApplication
+# MediaFeedApplication
